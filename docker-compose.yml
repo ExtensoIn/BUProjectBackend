@@ -1,0 +1,29 @@
+services:
+#  db:
+#    image: postgres:17
+#    container_name: postgres_db
+#    restart: always
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: postgres
+#      POSTGRES_DB: rust_db
+#    ports:
+#      - "5432:5432"
+#    volumes:
+#      - db_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    container_name: axum_app
+#    depends_on:
+#      - db
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - URL=${URL}
+      - PORT=${PORT}
+      - FRONTEND_URL=${FRONTEND_URL}
+    ports:
+      - "3000:3000"
+
+#volumes:
+#  db_data:
